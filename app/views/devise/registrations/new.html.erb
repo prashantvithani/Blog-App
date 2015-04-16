@@ -4,8 +4,26 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :full_name %><br />
+    <%= f.text_field :full_name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_field :dob, autofocus: true %>
+  </div>
+
+  <div class="field">
+   <%= f.radio_button :gender, true, checked: true %>
+      <%= label :gender_male, 'Male' %>
+      
+      <%= f.radio_button :gender, false %>
+      <%= label :gender_female, 'Female'  %>
   </div>
 
   <div class="field">
