@@ -1,0 +1,28 @@
+<h1 class="page-heading">Add new blog</h1>
+
+<div class="the-box no-border">
+	<%= form_for(@post, url: posts_path) do |f| %>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group">
+					<%= f.text_field :title, placeholder: "Title here...", class: "form-control input-lg" %>
+				</div>
+				<div class="form-group">
+					<%= f.text_area :body, placeholder: "Content here...", class: "summernote-lg" %>
+				</div>
+				<div class="form-group">
+					<%= f.submit 'Create Post', class: "btn btn-success" %>
+					<!-- <button class="btn btn-danger">Discard</button> -->
+				</div>
+			</div><!-- /.col-sm-8 -->
+		</div><!-- /.row -->
+	<% end -%>
+</div><!-- /.the-box no-border -->
+
+<script type="text/javascript">
+	if ($('.summernote-lg').length > 0){
+		$('.summernote-lg').summernote({
+			height: 400
+		});
+	}
+</script>

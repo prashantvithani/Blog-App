@@ -3,8 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :posts, dependent: :destroy
+
   def dob=(date)
-    date = date.to_date if date.is_a?(String)
+    date = Date.strptime(date, "%m/%d/%Y") if date.is_a?(String)
     write_attribute(:dob, date)
   end
 end
