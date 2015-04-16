@@ -1,0 +1,47 @@
+
+<!--
+===========================================================
+BEGIN PAGE
+===========================================================
+-->
+<!-- BEGIN TOP NAV -->
+<div class="top-navbar">
+	<div class="top-navbar-inner">
+		
+		<!-- Begin Logo brand -->
+		<div class="logo-brand">
+			<%= link_to "Blog App", root_path %>
+		</div><!-- /.logo-brand -->
+		<!-- End Logo brand -->
+		
+		<div class="top-nav-content">
+			<!-- Begin button nav toggle -->
+			<div class="btn-collapse-nav" data-toggle="collapse" data-target="#main-fixed-nav">
+				<i class="fa fa-plus icon-plus"></i>
+			</div><!-- /.btn-collapse-sidebar-right -->
+			<!-- End button nav toggle -->
+			
+			
+			<!-- Begin user session nav -->
+			<ul class="nav-user navbar-right">
+				<% if user_signed_in? %>
+				<li class="dropdown">
+				  <a href="blank.html#fakelink" class="dropdown-toggle" data-toggle="dropdown">
+							<%= gravatar_for(current_user) %>
+							Hi, <strong><%= current_user.full_name.split(" ").first %></strong>
+						  </a>
+						  <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
+								<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+								<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+						  </ul>
+				</li>
+				<% else %>
+					<%= link_to "Sign In", new_user_session_path, class: "btn btn-primary", style: "margin-top: 10px;"  %>
+					<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary", style: " margin-top: 10px;" %>
+				<% end %>
+			</ul>
+			<!-- End user session nav -->
+		</div><!-- /.top-nav-content -->
+	</div><!-- /.top-navbar-inner -->
+</div><!-- /.top-navbar -->
+<!-- END TOP NAV -->

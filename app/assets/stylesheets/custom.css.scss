@@ -1,0 +1,32 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.page-content {
+	margin-left: 0px !important;
+}
+
+#logo{
+	float:left;
+	margin-right: 10px;
+	font-size:1.7em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	padding-top: 9px;
+	font-weight: bold;
+	line-height: 1;
+
+
+	&:hover {
+	color: #fff;
+	text-decoration: none;
+	}
+}
+
+.iconposition {
+	margin-right: 265px;
+}
+
+.solution {
+	padding-left: 40px;
+}
