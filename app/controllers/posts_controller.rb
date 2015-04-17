@@ -17,17 +17,18 @@ class PostsController < ApplicationController
 	def create
 		post = params[:post]
 		@post = Post.new(title: post[:title], body: post[:body], user_id: current_user.id)
-		if @post.save!
+		if @post.save
 			current_user.posts << @post
 			redirect_to user_posts_path(current_user.id)
 		else
+			flash[:notice] = @post.errors
 			render 'new'
 		end
 	end
 
 	def destroy
 		Post.find(params[:id]).destroy
-		redirect_to posts_path
+		redirect_to user_posts_path(current_user.id)
 	end
 
 	def show_comments
@@ -45,13 +46,15 @@ class PostsController < ApplicationController
 		else
 			@post = Post.find(params[:id])
 			@post_comments = @post.comments
-			@comment = Comment.new(content: params[:content], user_id: current_user.id, post_id: @post.id)
-			if @comment.save!
-				respond_to do |format|
-					format.js
+			unless params[:content].blank?
+				@comment = Comment.new(content: params[:content], user_id: current_user.id, post_id: @post.id)
+				if @comment.save!
+					respond_to do |format|
+						format.js
+					end
+				else
+					render 'show'
 				end
-			else
-				render 'show'
 			end
 		end
 	end
