@@ -25,24 +25,9 @@
 				</div>
 				<hr />
 				
-				<p><span class="label label-info square">LEAVE A COMMENT</span></p>
-				<form role="form">
-					<div class="form-group">
-						<input type="text" class="form-control input-lg" placeholder="Your name">
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control input-lg" placeholder="Your email address">
-					</div>
-					<div class="form-group">
-						<input type="url" class="form-control input-lg" placeholder="Your website">
-					</div>
-					<div class="form-group">
-						<textarea class="form-control input-lg no-resize" style="height: 200px" placeholder="Your comment"></textarea>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success btn-lg"><i class="fa fa-comment"></i> Submit comment</button>
-					</div>
-				</form>
+				<%= link_to "Comments(#{@post_comments.count})", comments_path(@post.id), class: "btn btn-info", remote: true %>
+				<div id="comments">
+				</div>
 			</div><!-- /the.box .no-border -->
 		</div>
 	</div>

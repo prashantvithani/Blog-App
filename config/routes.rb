@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :posts
+  get 'posts/user/:id', to: 'posts#index', as: :user_posts
+
+  get 'comments/show/:id', to: 'posts#show_comments', as: :comments
+  # get 'comments/new', to: 'posts#throw_comment', as: :new_comment
+  post 'comments/create/', to: 'posts#create_comment', as: :create_comment
+  # get 'comments/destroy', to: 'posts#destroy_comment', as: :delete_comment
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

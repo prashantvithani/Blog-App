@@ -1,0 +1,12 @@
+<div id="new_comment">
+	<div class="the-box no-border">
+		<%= form_tag url_for(controller: "posts", action: "create_comment", id: @post.id), remote: true do %>
+			<div class="form-group">
+				<%= text_area_tag 'content', nil, class: "form-control input-lg rounded bold-border no-resize", style: "height: 100px;", placeholder: "Your comment here" %>
+			</div>
+			<div class="form-group">
+				<%= submit_tag 'Add comment', class: "btn btn-lg btn-success" %>
+			</div>
+		<% end -%>
+	</div>
+</div>

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def dob=(date)
     date = Date.strptime(date, "%m/%d/%Y") if date.is_a?(String)

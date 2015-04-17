@@ -1,0 +1,25 @@
+<% if not @post_comments.count == 0 %>
+<%= render 'new_comment' %>
+<div class="the-box no-border">
+	<ul class="media-list media-sm media-dotted">
+	<% @post_comments.each do |comment| %>
+	  <li class="media">
+		<a class="pull-left" href="#">
+		  <%= gravatar_for(comment.user, "comment") %>
+		</a>
+		<div class="media-body">
+		  <h4 class="media-heading"><a href="blog-comments.html#fakelink"><%= comment.user.full_name %></a></h4>
+		  <p class="date"><small><%= distance_of_time_in_words_to_now(comment.created_at) %></small></p>
+		  	<%= comment.content %> <br>
+		  <div class="comment-action">
+		  <!-- <a data-toggle="tooltip" title="25 likes" class="btn btn-xs btn-default btn-square com-btn"><i class="fa fa-thumbs-up"></i> 25</a> -->
+		  </div>
+		</div>
+	  </li>
+	<% end -%>
+	</ul>
+</div>
+<% else %>
+	<%= render 'new_comment' %>
+	No comments
+<% end -%>
