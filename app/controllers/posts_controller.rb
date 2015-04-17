@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-	before_filter :authenticate_user!, except: [:index, :show]
+	before_filter :authenticate_user!, except: [:index, :show, :show_comments, :create_comment]
 	def index
 		@user = User.find(params[:id])
-		@posts = current_user.posts.order("updated_at").paginate(page: params[:page], per_page: 10)
+		@posts = @user.posts.order("updated_at").paginate(page: params[:page], per_page: 10)
 	end
 
 	def show
@@ -30,31 +30,29 @@ class PostsController < ApplicationController
 		redirect_to posts_path
 	end
 
-	# def throw_comment
-	# 	respond_to do |format|
-	# 		format.js
-	# 	end
-	# end
-
 	def show_comments
 		@post = Post.find(params[:id])
 		@post_comments = @post.comments
 		respond_to do |format|
 			format.js
+			format.html { redirect_to new_user_session_path }
 		end
 	end
 
 	def create_comment
-		@post = Post.find(params[:id])
-		@post_comments = @post.comments
-		@comment = Comment.new(content: params[:content], user_id: current_user.id, post_id: @post.id)
-		if @comment.save!
-			respond_to do |format|
-				format.js
-				format.html { redirect_to posts_path(@post.id) }
-			end
+		unless user_signed_in?
+			render js: "window.location.replace('/users/sign_in')"
 		else
-			render 'show'
+			@post = Post.find(params[:id])
+			@post_comments = @post.comments
+			@comment = Comment.new(content: params[:content], user_id: current_user.id, post_id: @post.id)
+			if @comment.save!
+				respond_to do |format|
+					format.js
+				end
+			else
+				render 'show'
+			end
 		end
 	end
 end
