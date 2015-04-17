@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 	before_filter :authenticate_user!, except: [:index, :show, :show_comments, :create_comment]
 	def index
 		@user = User.find(params[:id])
-		@posts = @user.posts.order("updated_at").paginate(page: params[:page], per_page: 10)
+		@posts = @user.posts.order("created_at DESC").paginate(page: params[:page], per_page: 10)
 	end
 
 	def show
@@ -18,8 +18,8 @@ class PostsController < ApplicationController
 		post = params[:post]
 		@post = Post.new(title: post[:title], body: post[:body], user_id: current_user.id)
 		if @post.save!
-			redirect_to posts_path
 			current_user.posts << @post
+			redirect_to user_posts_path(current_user.id)
 		else
 			render 'new'
 		end
