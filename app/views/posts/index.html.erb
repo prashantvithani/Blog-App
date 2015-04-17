@@ -1,11 +1,13 @@
 <!-- Begin page heading -->
 <div class="row">
-<div class="col-md-2">
-<h1 class="page-heading">Blog list</h1>
+<div class="col-md-4">
+<h1 class="page-heading">Blog list of <%= @user.full_name %></h1>
 </div>
-<div class="col-md-10" style="margin-top: 10px;">
-<%= link_to "New Post", new_post_path, class: "btn btn-danger" %>
+<% if @user == current_user %>
+<div class="col-md-8" style="margin-top: 10px;">
+	<%= link_to "New Post", new_post_path, class: "btn btn-danger" %>
 </div>
+<% end -%>
 </div>
 <!-- End page heading -->
 
@@ -25,7 +27,7 @@
 				<p class="additional-post-wrap">
 					<span class="additional-post"><i class="fa fa-user"></i>by <a href="blog-list.html#fakelink"><%= post.user.full_name %></a></span>
 					<span class="additional-post"><i class="fa fa-clock-o"></i><a href="blog-list.html#fakelink"><%= post.created_at.strftime("%B %d, %Y") %></a></span>
-					<span class="additional-post"><i class="fa fa-comment"></i><a href="blog-list.html#fakelink">3 comments</a></span>
+					<span class="additional-post"><i class="fa fa-comment"></i><a href="blog-list.html#fakelink"><%= post.comments.count %></a></span>
 				</p>
 				<hr />
 				<p class="text-right"><%= link_to "Read More", post_path(post.id), class: "btn btn-success"  %></p>
