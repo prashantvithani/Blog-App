@@ -19,15 +19,15 @@
 			<!-- <img src="assets/img/photo/wide/img-1.jpg" class="img-responsive" alt="Image"> -->
 			<div class="featured-text relative-left">
 				<!-- <i class="fa fa-picture-o icon-danger icon-square icon-xs icon-type"></i> -->
-				<h3><a href="blog-list.html#fakelink"><%= post.title %></a></h3>
+				<h3><a href="<%= post_path(post.id) %>"><%= post.title %></a></h3>
 				<p class="date"><%= distance_of_time_in_words_to_now(post.created_at) %> ago</p>
 				<p>
 					<%= truncate(post.body, length: 240, escape: false) %>
 				</p>
 				<p class="additional-post-wrap">
-					<span class="additional-post"><i class="fa fa-user"></i>by <a href="blog-list.html#fakelink"><%= post.user.full_name %></a></span>
-					<span class="additional-post"><i class="fa fa-clock-o"></i><a href="blog-list.html#fakelink"><%= post.created_at.strftime("%B %d, %Y") %></a></span>
-					<span class="additional-post"><i class="fa fa-comment"></i><a href="blog-list.html#fakelink"><%= post.comments.count %></a></span>
+					<!-- <span class="additional-post"><i class="fa fa-user"></i>by <a href="blog-list.html#fakelink"><%= post.user.full_name %></a></span> -->
+					<span class="additional-post"><i class="fa fa-clock-o"></i><a href="javascript:void(0)"><%= post.created_at.strftime("%B %d, %Y") %></a></span>
+					<span class="additional-post"><i class="fa fa-comment"></i><a href="javascript:void(0)"><%= post.comments.count %></a></span>
 				</p>
 				<hr />
 				<p class="text-right"><%= link_to "Read More", post_path(post.id), class: "btn btn-success"  %></p>
