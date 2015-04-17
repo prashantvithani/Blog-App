@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 			current_user.posts << @post
 			redirect_to user_posts_path(current_user.id)
 		else
-			flash[:notice] = @post.errors
+			flash.now[:alert] = @post.errors.full_messages
 			render 'new'
 		end
 	end
