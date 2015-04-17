@@ -8,7 +8,7 @@
 		  <%= gravatar_for(comment.user, "comment") %>
 		</a>
 		<div class="media-body">
-		  <h4 class="media-heading"><a href="blog-comments.html#fakelink"><%= comment.user.full_name %></a></h4>
+		  <h4 class="media-heading"><a href="<%= user_posts_path(comment.user.id) %>"><%= comment.user.full_name %></a></h4>
 		  <p class="date"><small><%= distance_of_time_in_words_to_now(comment.created_at) %></small></p>
 		  	<%= comment.content %> <br>
 		  <div class="comment-action">
