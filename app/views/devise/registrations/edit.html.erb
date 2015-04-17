@@ -37,12 +37,6 @@
       </p>
     </div>
 
-    <div class="form-group has-feedback lg right-feedback no-label">
-      <!-- <%= f.label :dob %><br /> -->
-      <%= f.text_field :dob, class: "form-control no-border input-lg rounded datepicker solution", placeholder: "mm-dd-yyyy" %>
-      <span class="fa fa-calendar form-control-feedback iconposition"></span>
-    </div>
-
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
@@ -79,11 +73,3 @@
   <%= link_to "Back", :back, class: "btn btn-danger btn-lg btn-perspective btn-block", style: "margin-bottom: 100px; margin-top: 5px; width: 45%; float: right;" %>
   </div>
 </div>
-
-<script type="text/javascript">
-  if ($('.datepicker').length > 0){
-    $('.datepicker').datepicker({
-      dateFormat: "mm-dd-yyyy"
-    });
-  }
-</script>

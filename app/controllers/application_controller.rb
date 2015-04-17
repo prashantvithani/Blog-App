@@ -27,11 +27,11 @@ class ApplicationController < ActionController::Base
 	end
 
   	def update_sanitized_params_signup
-		devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email, :password, :password_confirmation, :full_name, :gender, :dob)}
+		devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email, :password, :password_confirmation, :full_name, :gender)}
 	end
 
 	def update_sanitized_params_edit
-		devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:email, :password, :password_confirmation, :current_password, :full_name, :gender, :dob)}
+		devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:email, :password, :password_confirmation, :current_password, :full_name, :gender)}
 	end
 
 	def set_cache_buster
