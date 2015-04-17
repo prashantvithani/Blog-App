@@ -1,11 +1,7 @@
-<% unless current_user.nil? %>
 	<!-- Begin page heading -->
 <div class="row">
-	<div class="col-md-2">
-		<h1 class="page-heading">Blog list</h1>
-	</div>
-	<div class="col-md-10" style="margin-top: 10px;">
-		<%= link_to "New Post", new_post_path, class: "btn btn-danger" %>
+	<div class="col-md-12 text-center">
+		<h1 class="page-heading">Recent Blog list</h1>
 	</div>
 </div>
 <!-- End page heading -->
@@ -15,12 +11,12 @@
 			<ul class="media-list media-sm blog-list">
 				<% @posts.each do |post| %>
 				<li class="media">
-				<div class="col-md-1">
+				<div class="col-md-1 col-sm 2">
 						<a class="pull-left" href="#">
 						  <%= gravatar_for(post.user, "home") %>
 						</a>
 				</div>	
-				<div class="col-md-11">
+				<div class="col-md-11 col-sm-10">
 					<div class="the-box no-margin no-border">
 						<div class="media-body">
 							<p><strong><a href="<%= user_posts_path(post.user.id) %>"><%= post.user.full_name %></a></strong> wrote a post</p>
@@ -36,4 +32,3 @@
 			</ul>
 	</div>
 </div>
-<% end -%>
