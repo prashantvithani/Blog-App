@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   get 'comments/show/:id', to: 'posts#show_comments', as: :comments
   # get 'comments/new', to: 'posts#throw_comment', as: :new_comment
   post 'comments/create/', to: 'posts#create_comment', as: :create_comment
+
+  namespace :api do
+      # Directs /admin/products/* to Admin::ProductsController
+      # (app/controllers/admin/products_controller.rb)
+      get '/posts/user/:id', to: 'posts_api#index'
+    end
   # get 'comments/destroy', to: 'posts#destroy_comment', as: :delete_comment
 
   # The priority is based upon order of creation: first created -> highest priority.
