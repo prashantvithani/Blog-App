@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'static#index'
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :posts
   get 'posts/user/:id', to: 'posts#index', as: :user_posts
@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
       get '/posts/user/:id', to: 'posts_api#index'
+
+      get '/users', to: 'users#index'
+      get '/user/:id', to: 'users#show'
     end
   # get 'comments/destroy', to: 'posts#destroy_comment', as: :delete_comment
 
