@@ -1,5 +1,6 @@
 class Api::PostsApiController < ApplicationController
-	def index
+	before_action :doorkeeper_authorize!
+	def index	
 		@user = User.find(params[:id])
 		@posts = @user.posts
 

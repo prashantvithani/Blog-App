@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+	before_action :doorkeeper_authorize!
 	def index
 		@users = User.all
 
