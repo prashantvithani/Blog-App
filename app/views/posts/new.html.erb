@@ -10,6 +10,11 @@
 				<div class="form-group">
 					<%= f.text_area :body, placeholder: "Content here...", class: "summernote-lg" %>
 				</div>
+				<div class="form-group has-feedback lg right-feedback no-label">
+			      <!-- <%= f.label :email %><br /> -->
+			      <%= f.file_field :header_image, class: "form-control no-border input-lg rounded solution", placeholder: "upload image" %>
+			      <span class="fa fa-picture form-control-feedback iconposition"></span>
+			    </div>
 				<div class="form-group">
 					<%= f.submit 'Create Post', class: "btn btn-success" %>
 					<!-- <button class="btn btn-danger">Discard</button> -->
