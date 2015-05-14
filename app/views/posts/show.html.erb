@@ -10,10 +10,10 @@
 			<% end -%>
 				<div class="blog-title">
 					<h5>WRITTEN BY</h5>
-					<a href="javascript:void(0)"><%= gravatar_for(@post.user) %></a>
-					<p><strong><%= @post.user.full_name %></strong></p>
+					<a href="javascript:void(0)"><%= gravatar_for(@post.user, "profile") %></a>
+					<h2><strong><%= @post.user.full_name %></strong></h2>
 					<h1><%= @post.title %></h1>
-					<!-- <h4>- in <a href="blog-detail.html#fakelink">Category name here</a></h4> -->
+					<p><strong><%= link_to "Share", share_blog_path(@post.id) %></strong></p>
 				</div><!-- /.blog-title -->
 			</div><!-- /.blog-detail-image -->
 			
