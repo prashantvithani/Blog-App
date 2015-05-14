@@ -1,1 +1,1 @@
-<%= @user.full_name %> need help from you and has complaints.
+Hey, <%= link_to @user.full_name, user_posts_url(@user.id) %> wants some help from you. Contact <% if @user.gender %> him <% else %> her <% end -%> ASAP on <%= mail_to @user.email %>
