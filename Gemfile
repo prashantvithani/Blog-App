@@ -24,6 +24,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'passenger'
 gem 'paperclip'
+gem 'delayed_job_active_record'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

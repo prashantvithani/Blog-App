@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # get 'comments/new', to: 'posts#throw_comment', as: :new_comment
   post 'comments/create/', to: 'posts#create_comment', as: :create_comment
 
+  get '/contact', to: 'static#support', as: :contact_mailer
+
   namespace :api do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
