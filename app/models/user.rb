@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0,20]
       end
   end
+
+  def self.all_except(user)
+    where.not(id: user)
+  end
 end
