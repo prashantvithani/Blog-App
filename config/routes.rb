@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'comments/create/', to: 'posts#create_comment', as: :create_comment
 
   get '/contact', to: 'static#support', as: :contact_mailer
+  get '/share/:id', to: 'static#share', as: :share_blog
 
   namespace :api do
       # Directs /admin/products/* to Admin::ProductsController

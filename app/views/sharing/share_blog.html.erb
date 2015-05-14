@@ -1,0 +1,1 @@
+Checkout this blog <%= link_to @post.title, post_url(@post.id) %>, written by <br><br> <a href="<%= user_posts_url(@author.id) %>"> <%= gravatar_for(@author, "profile") %> <br> <%= @author.full_name %>
