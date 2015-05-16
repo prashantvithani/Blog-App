@@ -15,8 +15,8 @@ development:
   database: blog_app_development
   pool: 5
   host: localhost
-  username: blog_app
-  password: blog_app
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password']%>
 # socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -29,8 +29,8 @@ test:
   database: blog_app_test
   pool: 5
   host: localhost
-  username: blog_app
-  password: blog_app
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
 # socket: /tmp/mysql.sock
 
 production:
@@ -40,6 +40,6 @@ production:
   database: blog_app_production
   pool: 5
   host: localhost
-  username: blog_app
-  password: blog_app
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
 # socket: /tmp/mysql.sock
