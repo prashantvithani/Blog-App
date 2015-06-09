@@ -1,0 +1,50 @@
+<div class="the-box full-width full">
+	<div class="row">
+		<div class="col-md-12">
+			<% if not @post.header_image.blank? %>
+			<div class="blog-detail-image">
+				<!-- <img src="assets/img/photo/large/img-14.jpg" class="img-blog" alt="Blog image"> -->
+					<%= image_tag @post.header_image.url(:header), class: "img-blog" %>
+			<% else %>
+			<div class="blog-detail-plain">
+			<% end -%>
+				<div class="blog-title">
+					<h5>WRITTEN BY</h5>
+					<a href="javascript:void(0)"><%= gravatar_for(@post.user, "profile") %></a>
+					<h2><strong><%= @post.user.full_name %></strong></h2>
+					<h1><%= @post.title %></h1>
+					<p><strong><%= link_to "Share", share_blog_path(@post.id) %></strong></p>
+				</div><!-- /.blog-title -->
+			</div><!-- /.blog-detail-image -->
+			
+			<div class="the-box no-border blog-detail-content">
+				<p><span class="label label-info square"><%= @post.created_at.to_time.localtime.strftime("%B %d, %Y @%I:%M:%S %p") %></span></p>
+				<p class="text-justify">
+					<%= @post.body.html_safe %>
+				</p>
+				<div class="row">
+					<div class="col-md-12">
+						<% if @post.user == current_user %>
+							<%= link_to "Delete Post", controller_name == 'posts' ? post_path(@post.id) : remove_archived_post_path(@post.id), method: :delete, class: "btn btn-danger" %>&emsp;
+							<% if controller_name == 'posts' %>
+								<%= link_to "Archive Post", create_archived_posts_path(@post.id), method: :post, class: "btn btn-info" %>&emsp;
+							<% elsif controller_name == 'archived_posts' %>
+								<%= link_to "Unarchive Post", unarchive_archived_post_path(@post.id), class: "btn btn-info", method: :post %>&emsp;
+							<% end -%>
+						<% end -%>
+						<%= link_to "Back", user_posts_path(@post.user.id) %>
+					</div>
+				</div>
+				<hr />
+				
+				<% if controller_name == 'posts' %>
+					<%= link_to "Comments(#{@post_comments.count})", comments_path(@post.id), class: "btn btn-info", remote: true %>
+				<% elsif controller_name == 'archived_posts' %>
+					<%= link_to "Comments(#{@post_comments.count})", archived_comments_path(@post.id), class: "btn btn-info", remote: true %>
+				<% end -%>
+				<div id="comments">
+				</div>
+			</div><!-- /the.box .no-border -->
+		</div>
+	</div>
+</div>

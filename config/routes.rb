@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   get '/contact', to: 'static#support', as: :contact_mailer
   get '/share/:id', to: 'static#share', as: :share_blog
 
+  get '/archived_posts/user/:id', to: 'archived_posts#index', as: :archived_posts
+  get '/archived_posts/:id', to: 'archived_posts#show', as: :archived_post
+  post '/archived_posts/:id/archive', to: 'archived_posts#archive', as: :create_archived_posts
+  post '/archived_posts/:id/unarchive', to: 'archived_posts#unarchive', as: :unarchive_archived_post
+  delete '/archived_post/:id', to: 'archived_posts#destroy', as: :remove_archived_post
+  get 'comments/:id/show', to: 'archived_posts#show_comments', as: :archived_comments
+
   namespace :api do
       # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)

@@ -26,6 +26,10 @@ gem 'passenger'
 gem 'paperclip'
 gem 'delayed_job_active_record'
 gem 'figaro'
+gem 'mongoid', '~> 4.0.0'
+gem 'bson_ext'
+gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
+gem 'tenacity'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

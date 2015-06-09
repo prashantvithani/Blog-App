@@ -1,0 +1,47 @@
+<!-- Begin page heading -->
+<div class="row">
+<div class="col-md-4">
+<h1 class="page-heading">Blog list of <%= @user.full_name %></h1>
+</div>
+<% if @user == current_user %>
+<div class="col-md-8" style="margin-top: 10px;">
+	<% if controller_name == 'posts' %>
+		<%= link_to "New Post", new_post_path, class: "btn btn-danger" %>
+		<%= link_to "Archived Posts", archived_posts_path(@user.id), class: "btn btn-info" %>
+	<% end -%>
+</div>
+<% end -%>
+</div>
+<!-- End page heading -->
+
+<div class="row">
+	<div class="col-md-12">
+		<% @posts.each do |post| %>
+		<!-- BEGIN FEATURED POST -->
+		<div class="featured-post-wide">
+			<!-- <img src="assets/img/photo/wide/img-1.jpg" class="img-responsive" alt="Image"> -->
+			<div class="featured-text relative-left">
+				<!-- <i class="fa fa-picture-o icon-danger icon-square icon-xs icon-type"></i> -->
+				<h3><a href="<%= post_path(post.id) %>"><%= post.title %></a></h3>
+				<p class="date"><%= distance_of_time_in_words_to_now(post.created_at) %> ago</p>
+				<p>
+					<%= truncate(post.body, length: 240, escape: false) %>
+				</p>
+				<p class="additional-post-wrap">
+					<!-- <span class="additional-post"><i class="fa fa-user"></i>by <a href="blog-list.html#fakelink"><%= post.user.full_name %></a></span> -->
+					<span class="additional-post"><i class="fa fa-clock-o"></i><a href="javascript:void(0)"><%= post.created_at.strftime("%B %d, %Y") %></a></span>
+					<span class="additional-post"><i class="fa fa-comment"></i><a href="javascript:void(0)"><% if controller_name == 'posts' %><%= post.comments.count %><% elsif controller_name == 'archived_posts' %><%= post.archived_comments.count %><% end %></a></span>
+				</p>
+				<hr />
+				<% if controller_name == 'posts' %>
+					<p class="text-right"><%= link_to "Read More", post_path(post.id), class: "btn btn-success"  %></p>
+				<% elsif controller_name == 'archived_posts' %>
+					<p class="text-right"><%= link_to "Read More", archived_post_path(post.id), class: "btn btn-success"  %></p>
+				<% end -%>
+			</div><!-- /.featured-text -->
+		</div><!-- /.featured-post-wide -->
+		<!-- END FEATURED POST -->
+		<% end -%>
+		<%= will_paginate @posts %>
+	</div>
+</div>
